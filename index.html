@@ -3,205 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI MAKER HUB - BYPASS VERSION</title>
+    <title>AI MAKER - AUTO DETECT VERSION</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .hidden { display: none; }
-        body { background: #0d1117; color: #c9d1d9; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        .card { background: #161b22; border: 1px solid #30363d; border-radius: 16px; }
-        .glow-blue:focus { border-color: #58a6ff; box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.3); }
-        .loading-bar { height: 2px; width: 100%; background: linear-gradient(90deg, transparent, #58a6ff, transparent); background-size: 200% 100%; animation: loading 1.5s infinite linear; }
+        body { background: #050505; color: #eee; font-family: 'Inter', sans-serif; }
+        .card-glass { background: #111; border: 1px solid #222; border-radius: 20px; transition: 0.3s; }
+        .card-glass:hover { border-color: #3b82f6; background: #161616; }
+        .input-dark { background: #000; border: 1px solid #333; color: white; border-radius: 12px; }
+        .input-dark:focus { border-color: #3b82f6; outline: none; }
+        .btn-grad { background: linear-gradient(90deg, #3b82f6, #8b5cf6); transition: 0.3s; }
+        .btn-grad:hover { opacity: 0.9; transform: scale(0.98); }
+        .shimmer { background: linear-gradient(90deg, #111 25%, #222 50%, #111 75%); background-size: 200% 100%; animation: loading 1.5s infinite linear; }
         @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
     </style>
 </head>
-<body class="p-4 min-h-screen">
+<body class="p-4">
 
-    <div id="app" class="max-w-lg mx-auto">
+    <div id="app" class="max-w-md mx-auto">
         
-        <div id="screen-home" class="space-y-4">
-            <div class="text-center py-8">
-                <h1 class="text-4xl font-black text-white tracking-tight">AI MAKER</h1>
-                <p class="text-blue-500 font-bold text-xs tracking-widest uppercase">Premium Generator</p>
-            </div>
+        <div id="screen-home" class="space-y-6">
+            <header class="text-center py-10">
+                <h1 class="text-3xl font-black tracking-tighter text-white italic">AI MAKER HUB</h1>
+                <div id="api-status" class="text-[10px] mt-2 inline-block px-3 py-1 rounded-full bg-red-900/30 text-red-500 font-bold border border-red-900">API: DISCONNECTED</div>
+            </header>
 
             <div class="grid gap-3">
-                <button onclick="showScreen('screen-settings')" class="card p-4 flex justify-between items-center hover:bg-[#21262d] transition">
-                    <span class="font-bold text-sm">⚙️ SETTINGS</span>
-                    <div id="status-chip" class="text-[10px] bg-red-900 text-red-200 px-2 py-1 rounded">KEY MISSING</div>
+                <button onclick="showScreen('screen-settings')" class="card-glass p-4 text-sm flex justify-between items-center font-bold">
+                    <span>⚙️ CONFIGURATION</span>
+                    <span>→</span>
                 </button>
 
                 <div class="pt-4 grid gap-3">
-                    <button onclick="openMaker('ROBLOX LUA MAKER')" class="card p-5 text-left font-bold hover:border-blue-500 transition">ROBLOX CUSTOM LUA MAKER</button>
-                    <button onclick="openMaker('GROWTOPIA LUA MAKER')" class="card p-5 text-left font-bold hover:border-green-500 transition">GROWTOPIA CUSTOM LUA MAKER</button>
-                    <button onclick="openMaker('IMAGE PROMPT MAKER')" class="card p-5 text-left font-bold hover:border-purple-500 transition">AI MAKER CUSTOM IMAGE</button>
-                    <button onclick="showScreen('screen-converter')" class="card p-5 text-left font-bold hover:border-yellow-500 transition">AI CONVERTER</button>
-                    <button onclick="showScreen('screen-gtps')" class="card p-5 text-left font-bold hover:border-orange-500 transition">AI GTPS LUA MAKER</button>
+                    <button onclick="openRequest('ROBLOX LUA MAKER')" class="card-glass p-5 text-left font-bold border-l-4 border-l-blue-500">ROBLOX CUSTOM LUA</button>
+                    <button onclick="openRequest('GROWTOPIA LUA MAKER')" class="card-glass p-5 text-left font-bold border-l-4 border-l-green-500">GROWTOPIA CUSTOM LUA</button>
+                    <button onclick="showScreen('screen-converter')" class="card-glass p-5 text-left font-bold border-l-4 border-l-yellow-500 text-yellow-500">AI CONVERTER</button>
+                    <button onclick="showScreen('screen-gtps')" class="card-glass p-5 text-left font-bold border-l-4 border-l-orange-500">AI GTPS LUA MAKER</button>
                 </div>
             </div>
         </div>
 
         <div id="screen-settings" class="hidden space-y-4">
-            <button onclick="showScreen('screen-home')" class="text-sm text-gray-400">← Kembali</button>
-            <h2 class="text-xl font-bold text-white">Konfigurasi</h2>
-            <div class="card p-6 space-y-4">
+            <button onclick="showScreen('screen-home')" class="text-sm text-gray-500">← Back</button>
+            <h2 class="text-2xl font-bold">Settings</h2>
+            <div class="card-glass p-6 space-y-4">
                 <div>
-                    <label class="text-xs font-bold text-gray-500 uppercase">Gemini API Key</label>
-                    <input type="password" id="api-key" placeholder="Paste key di sini..." class="w-full mt-2 p-3 rounded-lg bg-black border border-[#30363d] glow-blue outline-none text-sm">
+                    <label class="text-xs text-gray-400 font-bold uppercase">Google Gemini API Key</label>
+                    <input type="password" id="api-key" placeholder="Paste your key..." class="w-full mt-2 p-4 input-dark text-sm">
                 </div>
-                <button onclick="saveConfig()" class="w-full bg-blue-600 hover:bg-blue-500 p-4 rounded-xl font-bold text-white transition">SIMPAN</button>
+                <button onclick="saveKey()" class="w-full btn-grad p-4 rounded-xl font-bold">SAVE & ACTIVATE</button>
             </div>
         </div>
 
-        <div id="screen-maker" class="hidden space-y-4">
+        <div id="screen-request" class="hidden space-y-4">
             <div class="flex items-center gap-3">
-                <button onclick="showScreen('screen-home')" class="p-2 card text-xs">← BACK</button>
-                <h2 id="maker-title" class="font-bold text-sm text-blue-400 uppercase tracking-wider"></h2>
+                <button onclick="goBack()" class="p-2 card-glass text-xs">← BACK</button>
+                <h2 id="title-text" class="font-bold text-blue-400 uppercase text-xs"></h2>
             </div>
             
-            <div id="ai-loading" class="hidden loading-bar rounded"></div>
+            <textarea id="prompt-input" rows="5" class="w-full input-dark p-4 text-sm" placeholder="Tulis fitur yang ingin dibuat..."></textarea>
+            
+            <button onclick="callAI()" id="btn-gen" class="w-full btn-grad p-4 rounded-2xl font-black uppercase tracking-widest shadow-lg shadow-blue-500/20">GENERATE</button>
 
-            <div class="space-y-4">
-                <textarea id="prompt-input" rows="6" class="w-full card p-4 glow-blue outline-none text-sm" placeholder="Ketik permintaan anda..."></textarea>
-                
-                <button onclick="generateAI()" id="gen-btn" class="w-full bg-white text-black p-4 rounded-xl font-black uppercase tracking-widest hover:bg-gray-200 transition">GENERATE</button>
-
-                <div class="space-y-2">
-                    <div class="flex justify-between items-center text-[10px] font-bold text-gray-500">
-                        <span>HASIL:</span>
-                        <button onclick="copyResult()" class="text-blue-500">COPY CODE</button>
-                    </div>
-                    <pre id="output-area" class="card p-4 font-mono text-[11px] text-green-400 overflow-x-auto min-h-[250px] whitespace-pre-wrap bg-[#010409]">Menunggu input...</pre>
+            <div class="space-y-2">
+                <div class="flex justify-between items-center text-[10px] font-bold text-gray-500">
+                    <span>RESULT:</span>
+                    <button onclick="copyOutput()" class="text-blue-500">COPY</button>
                 </div>
+                <pre id="output-box" class="card-glass p-5 font-mono text-[11px] text-green-400 overflow-x-auto min-h-[250px] whitespace-pre-wrap bg-black border-none">Ready...</pre>
             </div>
         </div>
 
-        <div id="screen-gtps" class="hidden space-y-4 text-center">
-            <button onclick="showScreen('screen-home')" class="float-left text-sm">← Back</button><br>
-            <h2 class="font-bold text-xl py-4">GTPS SERVER TYPE</h2>
-            <button onclick="openMaker('GTPS GROWSOFT LUA')" class="w-full card p-8 mb-3 hover:border-blue-500">
-                <p class="font-bold text-lg text-blue-400">GROWSOFT</p>
-                <p class="text-[10px] text-gray-500">Sistem Cloud / Growcloud</p>
-            </button>
-            <button onclick="openMaker('GTPS RDP/VPS LUA')" class="w-full card p-8 hover:border-white">
-                <p class="font-bold text-lg text-white">RDP / VPS</p>
-                <p class="text-[10px] text-gray-500">Standard Enet/Proton</p>
-            </button>
-        </div>
-
-        <div id="screen-converter" class="hidden space-y-4">
+        <div id="screen-gtps" class="hidden space-y-3">
             <button onclick="showScreen('screen-home')" class="text-sm">← Back</button>
-            <div class="card p-6 text-center space-y-4">
-                <h2 class="font-bold text-yellow-500">AI CONVERTER</h2>
-                <select id="conv-type" class="w-full p-3 bg-black border border-[#30363d] rounded-lg text-sm">
-                    <option>YouTube to MP4</option>
-                    <option>YouTube to MP3</option>
-                    <option>IMG to RTTEX</option>
-                    <option>BIN/CUE to VCD</option>
-                </select>
-                <input type="text" placeholder="Masukkan Link..." class="w-full p-3 bg-black border border-[#30363d] rounded-lg text-sm">
-                <button onclick="alert('Fitur ini memerlukan API converter khusus. Gunakan AI Maker untuk membuat logikanya!')" class="w-full bg-yellow-600 p-3 rounded-lg font-bold text-black">PROCESS</button>
-            </div>
+            <button onclick="openRequest('GTPS GROWSOFT LUA')" class="w-full card-glass p-6 text-center font-bold border-blue-600/30">GROWSOFT</button>
+            <button onclick="openRequest('GTPS RDP/VPS LUA')" class="w-full card-glass p-6 text-center font-bold border-gray-600/30">RDP / VPS</button>
         </div>
 
+        <div id="screen-converter" class="hidden space-y-3">
+            <button onclick="showScreen('screen-home')" class="text-sm">← Back</button>
+            <div class="card-glass p-6 text-center">
+                <h2 class="font-bold text-yellow-500">CONVERTER</h2>
+                <p class="text-[10px] text-gray-500 mt-2 italic">Fitur ini butuh server. Gunakan "AI SCRIPT MAKER" untuk minta kode Python/NodeJS converternya.</p>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Inisialisasi
-        const savedKey = localStorage.getItem('api_key');
-        if(savedKey) {
-            document.getElementById('api-key').value = savedKey;
-            updateStatus(true);
-        }
-
         function showScreen(id) {
-            document.querySelectorAll('#app > div').forEach(div => div.classList.add('hidden'));
+            document.querySelectorAll('#app > div').forEach(d => d.classList.add('hidden'));
             document.getElementById(id).classList.remove('hidden');
         }
 
-        function saveConfig() {
+        function saveKey() {
             const key = document.getElementById('api-key').value.trim();
-            if(!key) return alert("Key tidak boleh kosong!");
-            localStorage.setItem('api_key', key);
-            updateStatus(true);
+            if(!key) return alert("Key kosong!");
+            localStorage.setItem('gem_key', key);
+            updateBadge();
             showScreen('screen-home');
         }
 
-        function updateStatus(active) {
-            const chip = document.getElementById('status-chip');
-            if(active) {
-                chip.innerText = "CONNECTED";
-                chip.className = "text-[10px] bg-green-900 text-green-200 px-2 py-1 rounded font-bold";
+        function updateBadge() {
+            const k = localStorage.getItem('gem_key');
+            const b = document.getElementById('api-status');
+            if(k) {
+                b.innerText = "API: CONNECTED";
+                b.className = "text-[10px] mt-2 inline-block px-3 py-1 rounded-full bg-green-900/30 text-green-500 font-bold border border-green-900";
             }
         }
 
-        function openMaker(title) {
-            if(!localStorage.getItem('api_key')) return alert("Setting API Key dulu!");
-            document.getElementById('maker-title').innerText = title;
-            document.getElementById('output-area').innerText = "Silahkan ketik permintaan anda...";
-            document.getElementById('prompt-input').value = "";
-            showScreen('screen-maker');
+        function openRequest(title) {
+            if(!localStorage.getItem('gem_key')) return alert("Isi API KEY di Settings!");
+            document.getElementById('title-text').innerText = title;
+            document.getElementById('output-box').innerText = "Silahkan ketik request...";
+            showScreen('screen-request');
         }
 
-        async function generateAI() {
-            const key = localStorage.getItem('api_key');
-            const title = document.getElementById('maker-title').innerText;
-            const input = document.getElementById('prompt-input').value;
-            const output = document.getElementById('output-area');
-            const btn = document.getElementById('gen-btn');
-            const loader = document.getElementById('ai-loading');
+        function goBack() {
+            const t = document.getElementById('title-text').innerText;
+            if(t.includes('GTPS')) showScreen('screen-gtps');
+            else showScreen('screen-home');
+        }
 
-            if(!input) return alert("Request tidak boleh kosong!");
+        // --- FUNGSI UTAMA BYPASS ---
+        async function callAI() {
+            const key = localStorage.getItem('gem_key');
+            const prompt = document.getElementById('prompt-input').value;
+            const title = document.getElementById('title-text').innerText;
+            const output = document.getElementById('output-box');
+            const btn = document.getElementById('btn-gen');
+
+            if(!prompt) return alert("Isi request!");
 
             btn.disabled = true;
-            btn.innerText = "THINKING...";
-            loader.classList.remove('hidden');
-            output.innerText = "Menghubungkan ke Gemini AI...";
+            btn.innerText = "PROCESSING...";
+            output.innerText = "Mencoba beberapa model AI Google...";
+            output.classList.add('shimmer');
 
-            // MODUL BYPASS CORS (Gunakan endpoint resmi v1)
-            const url = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${key}`;
+            // Kita coba 3 variasi endpoint yang sering berubah-ubah di tiap wilayah
+            const models = [
+                { url: "v1beta/models/gemini-1.5-flash", name: "1.5 Flash Beta" },
+                { url: "v1beta/models/gemini-pro", name: "Pro Beta" },
+                { url: "v1/models/gemini-pro", name: "Pro Stable" }
+            ];
 
-            const payload = {
-                contents: [{
-                    parts: [{
-                        text: `Kamu adalah asisten ahli untuk ${title}. Tugasmu: ${input}. Berikan kode lengkap atau penjelasan yang sangat teknis.`
-                    }]
-                }]
-            };
+            let success = false;
 
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
+            for (let m of models) {
+                if(success) break;
+                try {
+                    const response = await fetch(`https://generativelanguage.googleapis.com/${m.url}:generateContent?key=${key}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            contents: [{ parts: [{ text: `Expert Mode: ${title}. Request: ${prompt}` }] }]
+                        })
+                    });
 
-                const data = await response.json();
-
-                if(data.error) {
-                    throw new Error(data.error.message);
+                    const data = await response.json();
+                    if(data.candidates) {
+                        output.innerText = data.candidates[0].content.parts[0].text;
+                        success = true;
+                        console.log("Success using model: " + m.name);
+                    }
+                } catch (e) {
+                    console.error("Model " + m.name + " failed.");
                 }
-
-                if(data.candidates && data.candidates[0].content) {
-                    output.innerText = data.candidates[0].content.parts[0].text;
-                } else {
-                    throw new Error("Respon AI kosong. Coba lagi.");
-                }
-
-            } catch (err) {
-                output.innerText = "❌ ERROR: " + err.message + 
-                "\n\nTips:\n1. Pastikan API KEY benar.\n2. Jika kamu di HP, gunakan Browser Chrome.\n3. Coba aktifkan VPN jika masih gagal.";
-            } finally {
-                btn.disabled = false;
-                btn.innerText = "GENERATE";
-                loader.classList.add('hidden');
             }
+
+            if(!success) {
+                output.innerText = "❌ ERROR: Semua model Google gagal merespon.\n\nSOLUSI TERBAIK:\n1. Buka situs aistudio.google.com\n2. Cek apakah API Key Anda aktif.\n3. Gunakan VPN (U.S atau Singapore) lalu refresh halaman ini.";
+            }
+
+            btn.disabled = false;
+            btn.innerText = "GENERATE";
+            output.classList.remove('shimmer');
         }
 
-        function copyResult() {
-            const text = document.getElementById('output-area').innerText;
-            navigator.clipboard.writeText(text);
-            alert("Berhasil disalin!");
+        function copyOutput() {
+            navigator.clipboard.writeText(document.getElementById('output-box').innerText);
+            alert("Disalin!");
         }
+
+        // Init
+        updateBadge();
+        if(localStorage.getItem('gem_key')) document.getElementById('api-key').value = localStorage.getItem('gem_key');
     </script>
 </body>
 </html>

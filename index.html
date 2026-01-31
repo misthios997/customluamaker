@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI MAKER HUB - ULTIMATE v3</title>
+    <title>AI MAKER HUB - ULTIMATE BYPASS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .hidden { display: none; }
-        body { background: #09090b; color: #f4f4f5; font-family: 'Inter', sans-serif; }
+        body { background: #09090b; color: #f4f4f5; font-family: 'Inter', sans-serif; overflow-x: hidden; }
         .card-node { background: #18181b; border: 1px solid #27272a; border-radius: 16px; cursor: pointer; transition: 0.2s; }
         .card-node:hover { border-color: #3b82f6; background: #1c1c21; }
         .btn-action { background: linear-gradient(135deg, #3b82f6, #8b5cf6); border-radius: 12px; }
         .shimmer { background: linear-gradient(90deg, #18181b 25%, #27272a 50%, #18181b 75%); background-size: 200% 100%; animation: load 1.5s infinite linear; }
         @keyframes load { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
     </style>
 </head>
 <body class="p-4 md:p-10">
@@ -21,13 +22,13 @@
         
         <header id="screen-home-head" class="text-center py-4">
             <h1 class="text-4xl font-black italic tracking-tighter">AI MAKER HUB</h1>
-            <p class="text-blue-500 text-[10px] font-bold tracking-[0.4em] uppercase mt-2">Professional Script & Engine</p>
+            <p class="text-blue-500 text-[10px] font-bold tracking-[0.4em] uppercase mt-2">No Limit - Pro Edition</p>
         </header>
 
         <div id="screen-home" class="space-y-4">
             <button onclick="showScreen('screen-settings')" class="w-full card-node p-4 flex justify-between items-center border-dashed border-gray-600">
-                <span class="text-xs font-bold text-gray-500 underline uppercase italic">⚙️ Masukkan API Key Disini</span>
-                <span id="api-indicator" class="text-[10px] text-red-500 font-bold tracking-tighter italic uppercase">Key Not Set</span>
+                <span class="text-xs font-bold text-gray-500 underline uppercase italic">⚙️ Config API Key</span>
+                <span id="api-indicator" class="text-[10px] text-red-500 font-bold italic uppercase">Key Not Set</span>
             </button>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -39,9 +40,9 @@
                     <h3 class="font-bold text-green-400 text-sm">GROWTOPIA LUA MAKER</h3>
                     <p class="text-[9px] text-gray-500 mt-1 italic">(GrowLauncher/Genta)</p>
                 </div>
-                <div onclick="openMaker('AI MAKER CUSTOM IMAGE', 'Menghasilkan gambar visual nyata dari teks')" class="card-node p-5 border-l-4 border-purple-500">
-                    <h3 class="font-bold text-sm">AI MAKER CUSTOM IMAGE</h3>
-                    <p class="text-[9px] text-gray-500 mt-1">Tanpa syarat apa pun</p>
+                <div onclick="openMaker('AI MAKER CUSTOM IMAGE', 'Menghasilkan gambar visual nyata (ANTI-LIMIT)')" class="card-node p-5 border-l-4 border-purple-500">
+                    <h3 class="font-bold text-sm text-purple-400">AI MAKER CUSTOM IMAGE</h3>
+                    <p class="text-[9px] text-gray-500 mt-1">Multi-Engine Generation</p>
                 </div>
                 <div onclick="showScreen('screen-converter')" class="card-node p-5">
                     <h3 class="font-bold text-yellow-500 text-sm">AI CONVERTER</h3>
@@ -66,12 +67,12 @@
         <div id="screen-settings" class="hidden space-y-4">
             <button onclick="showScreen('screen-home')" class="text-sm text-gray-500 font-bold">[ Back ]</button>
             <div class="card-node p-6 space-y-4 cursor-default">
-                <h2 class="font-bold italic uppercase underline">Sistem Konfigurasi:</h2>
+                <h2 class="font-bold italic uppercase underline text-blue-500">Settings:</h2>
                 <div>
                     <label class="text-[10px] text-gray-400 uppercase font-bold">Gemini API Key:</label>
-                    <input type="password" id="api-key" placeholder="Paste key anda" class="w-full mt-2 p-4 bg-black border border-gray-800 rounded-xl outline-none text-sm text-blue-400">
+                    <input type="password" id="api-key" placeholder="Paste Gemini API Key..." class="w-full mt-2 p-4 bg-black border border-gray-800 rounded-xl outline-none text-sm text-white focus:border-blue-500">
                 </div>
-                <button onclick="saveKey()" class="w-full btn-action p-4 text-white font-bold uppercase tracking-widest italic">Simpan & Aktifkan</button>
+                <button onclick="saveKey()" class="w-full btn-action p-4 text-white font-bold uppercase italic">Simpan & Aktifkan</button>
             </div>
         </div>
 
@@ -81,18 +82,17 @@
                 <h2 id="maker-title" class="font-black text-xs text-blue-500 uppercase italic underline"></h2>
             </div>
             <div class="space-y-4">
-                <p id="maker-desc" class="text-[10px] text-gray-500 italic"></p>
-                <textarea id="maker-input" rows="5" class="w-full p-4 bg-black border border-gray-800 rounded-xl outline-none text-sm text-white focus:border-blue-600" placeholder="Ketik apa yang ingin dibuat..."></textarea>
-                <button onclick="generateAction()" id="gen-btn" class="w-full btn-action p-4 text-white font-black uppercase italic tracking-tighter">Generate Result</button>
+                <textarea id="maker-input" rows="5" class="w-full p-4 bg-black border border-gray-800 rounded-xl outline-none text-sm text-white focus:border-blue-600" placeholder="Ketik deskripsi atau perintah..."></textarea>
+                <button onclick="generateAction()" id="gen-btn" class="w-full btn-action p-4 text-white font-black uppercase italic tracking-tighter shadow-lg shadow-blue-500/20">Generate Result</button>
                 
                 <div class="space-y-2">
                     <div class="flex justify-between items-center px-1">
-                        <span class="text-[10px] font-bold text-gray-500 uppercase underline italic">Hasil Output:</span>
-                        <button onclick="copyOutput()" id="copy-btn" class="text-[10px] font-bold bg-blue-900/30 text-blue-400 px-4 py-1 rounded-md border border-blue-500/30">Copy Result</button>
+                        <span class="text-[10px] font-bold text-gray-500 uppercase italic">Output:</span>
+                        <button id="copy-btn" onclick="copyOutput()" class="text-[10px] font-bold bg-blue-900/30 text-blue-400 px-4 py-1 rounded-md border border-blue-500/30">Copy Script</button>
                     </div>
-                    <pre id="output-txt" class="w-full p-5 bg-[#010101] border border-gray-900 rounded-xl font-mono text-[11px] text-green-500 overflow-x-auto min-h-[300px] whitespace-pre-wrap"></pre>
+                    <pre id="output-txt" class="w-full p-5 bg-[#010101] border border-gray-900 rounded-xl font-mono text-[11px] text-green-500 overflow-x-auto min-h-[300px] whitespace-pre-wrap">Waiting...</pre>
                     <div id="output-img-box" class="hidden w-full p-1 bg-gray-900 rounded-xl border border-gray-800">
-                        <img id="output-img" class="w-full rounded-lg shadow-2xl" src="" alt="AI Output">
+                        <img id="output-img" class="w-full rounded-lg" src="" alt="AI Output">
                     </div>
                 </div>
             </div>
@@ -101,10 +101,10 @@
         <div id="screen-gtps-choice" class="hidden space-y-4 text-center">
             <button onclick="showScreen('screen-home')" class="float-left text-sm text-gray-500 font-bold">[ Back ]</button><br>
             <h2 class="text-lg font-bold italic py-6 uppercase underline">Pilih Jenis Server:</h2>
-            <div onclick="openMaker('GTPS GROWSOFT (CLOUD)', 'Khusus engine Growsoft Cloud')" class="card-node p-8 border-blue-500">
+            <div onclick="openMaker('GTPS GROWSOFT', 'Engine Growsoft Cloud')" class="card-node p-8 border-blue-500">
                 <h3 class="font-bold text-blue-400 text-lg">GROWSOFT</h3>
             </div>
-            <div onclick="openMaker('GTPS RDP/VPS (ENET)', 'Engine Standard Enet/Proton')" class="card-node p-8 border-gray-700">
+            <div onclick="openMaker('GTPS RDP/VPS', 'Engine Enet/Proton')" class="card-node p-8 border-gray-700">
                 <h3 class="font-bold text-lg">RDP / VPS</h3>
             </div>
         </div>
@@ -113,26 +113,24 @@
             <button onclick="showScreen('screen-home')" class="text-sm text-gray-500 font-bold">[ Back ]</button>
             <div class="card-node p-6 space-y-4 text-center cursor-default">
                 <h2 class="font-bold italic text-yellow-500 uppercase underline">Ai Converter:</h2>
-                <select id="conv-sel" class="w-full p-4 bg-black border border-gray-800 rounded-xl text-sm italic outline-none">
+                <select class="w-full p-4 bg-black border border-gray-800 rounded-xl text-sm italic outline-none">
                     <option>Youtube to MP4</option>
                     <option>Youtube to MP3</option>
-                    <option>Tiktok No Watermark</option>
                     <option>IMG to RTTEX</option>
                     <option>.bin to .vcd</option>
                 </select>
-                <input type="text" placeholder="Masukkan Link di sini..." class="w-full p-4 bg-black border border-gray-800 rounded-xl text-sm italic">
-                <button class="w-full bg-yellow-600 p-4 rounded-xl font-black text-black uppercase text-xs shadow-lg">Process Convert</button>
+                <input type="text" placeholder="Masukkan Link..." class="w-full p-4 bg-black border border-gray-800 rounded-xl text-sm italic">
+                <button class="w-full bg-yellow-600 p-4 rounded-xl font-black text-black uppercase text-xs shadow-lg">Start Process</button>
             </div>
         </div>
 
     </div>
 
     <script>
-        // LOAD SAVED DATA
-        if(localStorage.getItem('gem_key_hub')) {
-            const k = localStorage.getItem('gem_key_hub');
-            document.getElementById('api-key').value = k;
-            document.getElementById('api-indicator').innerText = "Key Connected";
+        // INIT DATA
+        if(localStorage.getItem('gem_key_v3')) {
+            document.getElementById('api-key').value = localStorage.getItem('gem_key_v3');
+            document.getElementById('api-indicator').innerText = "Connected";
             document.getElementById('api-indicator').classList.replace('text-red-500', 'text-green-500');
         }
 
@@ -141,26 +139,24 @@
             document.getElementById(id).classList.remove('hidden');
             if(id === 'screen-home') document.getElementById('screen-home-head').classList.remove('hidden');
             else if(id === 'screen-maker') document.getElementById('screen-home-head').classList.add('hidden');
-            window.scrollTo(0,0);
         }
 
         function saveKey() {
             const val = document.getElementById('api-key').value.trim();
-            if(!val) return alert("Isi API Key!");
-            localStorage.setItem('gem_key_hub', val);
+            if(!val) return alert("Key wajib diisi!");
+            localStorage.setItem('gem_key_v3', val);
             location.reload();
         }
 
         function openMaker(title, desc) {
-            if(!localStorage.getItem('gem_key_hub')) return alert("Gunakan Gemini API Key di menu Setting agar semua fitur terbuka.");
+            if(!localStorage.getItem('gem_key_v3')) return alert("Wajib isi API Key di Settings!");
             document.getElementById('maker-title').innerText = title;
             document.getElementById('maker-desc').innerText = desc;
-            document.getElementById('maker-input').value = "";
-            document.getElementById('output-txt').innerText = "Waiting for Request...";
+            document.getElementById('output-txt').innerText = "Ketik perintah di atas...";
             document.getElementById('output-txt').classList.remove('hidden');
             document.getElementById('output-img-box').classList.add('hidden');
             document.getElementById('copy-btn').classList.remove('hidden');
-
+            
             const back = document.getElementById('maker-back');
             if(title.includes('GTPS') || title.includes('RDP')) back.setAttribute('onclick', "showScreen('screen-gtps-choice')");
             else back.setAttribute('onclick', "showScreen('screen-home')");
@@ -169,57 +165,70 @@
         }
 
         async function generateAction() {
-            const key = localStorage.getItem('gem_key_hub');
+            const key = localStorage.getItem('gem_key_v3');
             const prompt = document.getElementById('maker-input').value;
             const title = document.getElementById('maker-title').innerText;
             const outTxt = document.getElementById('output-txt');
             const outImgBox = document.getElementById('output-img-box');
+            const outImg = document.getElementById('output-img');
             const btn = document.getElementById('gen-btn');
 
-            if(!prompt) return alert("Masukkan instruksi!");
+            if(!prompt) return alert("Tulis dulu permintaannya!");
 
             btn.disabled = true;
-            btn.innerText = "Processing AI...";
-            outTxt.innerText = "Berfikir...";
+            btn.innerText = "Processing...";
+            outTxt.innerText = "AI sedang bekerja...";
             outTxt.classList.add('shimmer');
 
-            // --- JIKA MENU IMAGE ---
+            // --- JIKA MENU IMAGE (ANTI-LIMIT BYPASS) ---
             if(title === 'AI MAKER CUSTOM IMAGE') {
+                const ts = new Date().getTime(); // Anti-cache
                 const seed = Math.floor(Math.random() * 999999);
-                const imgUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?seed=${seed}&width=1024&height=1024&nologo=true`;
+                
+                // Mesin 1: Pollinations dengan bypass timestamp
+                const engine1 = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?seed=${seed}&width=1024&height=1024&nologo=true&t=${ts}`;
+                // Mesin 2: Airforce (Backup)
+                const engine2 = `https://api.airforce/v1/imagine?prompt=${encodeURIComponent(prompt)}&model=flux`;
+
                 outTxt.classList.add('hidden');
                 document.getElementById('copy-btn').classList.add('hidden');
                 outImgBox.classList.remove('hidden');
-                document.getElementById('output-img').src = imgUrl;
-                btn.disabled = false;
-                btn.innerText = "Generate Result";
+                
+                outImg.src = engine1;
+                outImg.onerror = () => { outImg.src = engine2; };
+                
+                outImg.onload = () => {
+                    btn.disabled = false;
+                    btn.innerText = "Generate Result";
+                };
                 return;
             }
 
             // --- JIKA MENU TEKS (GEMINI) ---
-            const urls = [
-                `v1beta/models/gemini-1.5-flash:generateContent?key=${key}`,
-                `v1/models/gemini-pro:generateContent?key=${key}`
-            ];
+            const versions = ["v1beta", "v1"];
+            const models = ["gemini-1.5-flash", "gemini-pro"];
+            let success = false;
 
-            let ok = false;
-            for(let u of urls) {
-                if(ok) break;
-                try {
-                    const res = await fetch(`https://generativelanguage.googleapis.com/` + u, {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({ contents: [{ parts: [{ text: `Expert for ${title}. Task: ${prompt}` }] }] })
-                    });
-                    const data = await res.json();
-                    if(data.candidates) {
-                        outTxt.innerText = data.candidates[0].content.parts[0].text;
-                        ok = true;
-                    }
-                } catch(e) {}
+            for(let v of versions) {
+                if(success) break;
+                for(let m of models) {
+                    if(success) break;
+                    try {
+                        const res = await fetch(`https://generativelanguage.googleapis.com/${v}/models/${m}:generateContent?key=${key}`, {
+                            method: 'POST',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify({ contents: [{ parts: [{ text: `Expert AI for ${title}. Task: ${prompt}` }] }] })
+                        });
+                        const data = await res.json();
+                        if(data.candidates) {
+                            outTxt.innerText = data.candidates[0].content.parts[0].text;
+                            success = true;
+                        }
+                    } catch(e) {}
+                }
             }
 
-            if(!ok) outTxt.innerText = "❌ Gagal Terhubung!\n\nPastikan:\n1. API Key benar.\n2. Nyalakan VPN jika di blokir Google.";
+            if(!success) outTxt.innerText = "❌ ERROR: Semua model gagal. Pastikan API Key benar atau gunakan VPN.";
             
             btn.disabled = false;
             btn.innerText = "Generate Result";
@@ -229,7 +238,7 @@
         function copyOutput() {
             const t = document.getElementById('output-txt').innerText;
             navigator.clipboard.writeText(t);
-            alert("Hasil Berhasil Disalin!");
+            alert("Berhasil disalin!");
         }
     </script>
 </body>

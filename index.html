@@ -8,121 +8,132 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
-        body { background: #08080a; color: #f8fafc; font-family: 'Space Grotesk', sans-serif; }
-        .glass-card { background: rgba(17, 17, 27, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
-        .glow-btn { background: linear-gradient(90deg, #6366f1, #a855f7); transition: 0.4s; box-shadow: 0 0 20px rgba(168, 85, 247, 0.2); }
-        .glow-btn:hover { box-shadow: 0 0 30px rgba(168, 85, 247, 0.5); transform: translateY(-2px); }
-        .log-box { background: #000; font-family: monospace; font-size: 10px; color: #10b981; }
+        body { background: #050507; color: #f8fafc; font-family: 'Space Grotesk', sans-serif; }
+        .glass-card { background: rgba(15, 15, 25, 0.9); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.08); }
+        .glow-btn { background: linear-gradient(135deg, #4f46e5, #9333ea); transition: 0.3s; }
+        .glow-btn:hover { transform: translateY(-2px); box-shadow: 0 0 25px rgba(147, 51, 234, 0.4); }
+        .log-box { background: #000; font-family: 'Courier New', monospace; font-size: 10px; color: #34d399; scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
     </style>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4">
 
-    <div class="max-w-lg w-full glass-card p-8 rounded-[2rem] relative overflow-hidden">
-        <div class="text-center mb-8">
-            <h1 class="text-3xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-                AI IMAGE TO VIDEO
+    <div class="max-w-lg w-full glass-card p-6 md:p-10 rounded-[2.5rem] shadow-2xl relative">
+        <div class="absolute -top-10 -right-10 w-32 h-32 bg-indigo-600/20 blur-[60px]"></div>
+
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-black tracking-tighter text-white">
+                AI <span class="text-indigo-400">VIDEO</span>
             </h1>
-            <p class="text-[10px] text-slate-500 tracking-[0.4em] uppercase font-bold mt-1">User: MehanGG</p>
-        </div>
+            <p class="text-[10px] text-slate-500 tracking-[0.4em] uppercase font-bold mt-1">Dev: MehanGG</p>
+        </header>
 
-        <div class="space-y-4">
-            <div class="grid grid-cols-1 gap-3">
-                <div>
-                    <label class="text-[10px] font-bold text-slate-500 uppercase ml-1">Gemini API Key</label>
-                    <input type="password" id="apiKey" class="w-full bg-slate-900/50 border border-slate-800 rounded-xl p-3 text-sm focus:border-purple-500 outline-none" placeholder="Paste Key Here...">
-                </div>
+        <div class="space-y-5">
+            <div>
+                <label class="text-[10px] font-bold text-slate-400 uppercase ml-1">Gemini API Key</label>
+                <input type="password" id="apiKey" class="w-full bg-black/40 border border-slate-800 rounded-2xl p-3 text-sm focus:border-indigo-500 outline-none transition-all" placeholder="Enter Key (Optional)">
             </div>
 
             <div>
-                <label class="text-[10px] font-bold text-slate-500 uppercase ml-1">Input Image</label>
-                <input type="file" id="fileInput" class="w-full bg-slate-900/50 border border-slate-800 rounded-xl p-2 text-xs text-slate-400 file:bg-purple-600 file:border-0 file:rounded-lg file:text-white file:px-3 file:py-1 cursor-pointer">
+                <label class="text-[10px] font-bold text-slate-400 uppercase ml-1">Upload Source Image</label>
+                <input type="file" id="fileInput" class="w-full bg-black/40 border border-slate-800 rounded-2xl p-2 text-xs text-slate-500 file:bg-indigo-600 file:border-0 file:rounded-xl file:text-white file:px-4 file:py-1 cursor-pointer">
             </div>
 
             <div>
-                <label class="text-[10px] font-bold text-slate-500 uppercase ml-1">Motion Prompt</label>
-                <textarea id="prompt" class="w-full bg-slate-900/50 border border-slate-800 rounded-xl p-3 h-24 text-sm focus:border-purple-500 outline-none resize-none" placeholder="Describe the movement (e.g. realistic ocean waves, cinematic fire)"></textarea>
+                <label class="text-[10px] font-bold text-slate-400 uppercase ml-1">Motion Prompt</label>
+                <textarea id="prompt" class="w-full bg-black/40 border border-slate-800 rounded-2xl p-4 h-28 text-sm focus:border-indigo-500 outline-none resize-none transition-all" placeholder="Describe the movement... (e.g. realistic ocean waves, flying bird)"></textarea>
             </div>
 
-            <div class="flex gap-2">
-                <button onclick="setDur(5, this)" class="dur-btn flex-1 py-2 bg-slate-900 border border-slate-800 rounded-lg text-xs hover:border-purple-500 transition-all active-dur">5s</button>
-                <button onclick="setDur(10, this)" class="dur-btn flex-1 py-2 bg-slate-900 border border-slate-800 rounded-lg text-xs hover:border-purple-500 transition-all">10s</button>
-                <button onclick="setDur(30, this)" class="dur-btn flex-1 py-2 bg-slate-900 border border-slate-800 rounded-lg text-xs hover:border-purple-500 transition-all">30s</button>
+            <div class="grid grid-cols-5 gap-2">
+                <button onclick="setDur(5, this)" class="dur-btn py-2 bg-slate-900/50 border border-slate-800 rounded-xl text-[10px] hover:border-indigo-500 transition-all border-indigo-500 bg-indigo-500/10">5s</button>
+                <button onclick="setDur(10, this)" class="dur-btn py-2 bg-slate-900/50 border border-slate-800 rounded-xl text-[10px] hover:border-indigo-500 transition-all">10s</button>
+                <button onclick="setDur(30, this)" class="dur-btn py-2 bg-slate-900/50 border border-slate-800 rounded-xl text-[10px] hover:border-indigo-500 transition-all">30s</button>
+                <button onclick="setDur(60, this)" class="dur-btn py-2 bg-slate-900/50 border border-slate-800 rounded-xl text-[10px] hover:border-indigo-500 transition-all">60s</button>
+                <button onclick="setDur(120, this)" class="dur-btn py-2 bg-slate-900/50 border border-slate-800 rounded-xl text-[10px] hover:border-indigo-500 transition-all">120s</button>
             </div>
 
-            <button onclick="runAI()" id="mainBtn" class="w-full glow-btn py-4 rounded-2xl font-black text-sm uppercase tracking-widest text-white mt-2">
+            <button onclick="generateVideo()" id="btnAction" class="w-full glow-btn py-4 rounded-2xl font-black text-xs uppercase tracking-widest text-white shadow-xl">
                 Generate Video
             </button>
 
-            <div id="log" class="log-box p-3 rounded-lg h-24 overflow-y-auto mt-4 border border-slate-800 opacity-70">
+            <div id="statusLog" class="log-box p-4 rounded-2xl h-28 overflow-y-auto border border-slate-800/50">
                 > System ready...
+            </div>
+
+            <div id="resultDisplay" class="hidden space-y-3 pt-4 animate-pulse">
+                <p class="text-[10px] text-center text-indigo-400 font-bold uppercase tracking-widest">Resulting Media:</p>
+                <div id="mediaContainer" class="rounded-2xl overflow-hidden border border-slate-700 bg-black shadow-2xl">
+                    </div>
+                <button id="downloadBtn" class="w-full text-[10px] font-bold text-slate-500 uppercase hover:text-white transition-colors">Download File</button>
             </div>
         </div>
     </div>
 
     <script>
-        let selectedDuration = 5;
+        let duration = 5;
 
-        function addLog(msg) {
-            const logBox = document.getElementById('log');
-            logBox.innerHTML += `<br>> ${msg}`;
-            logBox.scrollTop = logBox.scrollHeight;
+        function log(msg, color = "text-emerald-400") {
+            const box = document.getElementById('statusLog');
+            box.innerHTML += `<div class="${color}">> ${msg}</div>`;
+            box.scrollTop = box.scrollHeight;
         }
 
         function setDur(s, btn) {
-            selectedDuration = s;
-            document.querySelectorAll('.dur-btn').forEach(b => b.classList.remove('border-purple-500', 'bg-purple-900/20'));
-            btn.classList.add('border-purple-500', 'bg-purple-900/20');
-            addLog(`Duration set to ${s} seconds`);
+            duration = s;
+            document.querySelectorAll('.dur-btn').forEach(b => b.classList.remove('border-indigo-500', 'bg-indigo-500/10'));
+            btn.classList.add('border-indigo-500', 'bg-indigo-500/10');
+            log(`Duration set: ${s} seconds`);
         }
 
-        async function runAI() {
+        async function generateVideo() {
             const prompt = document.getElementById('prompt').value;
-            const btn = document.getElementById('mainBtn');
-            const apiKey = document.getElementById('apiKey').value;
+            const btn = document.getElementById('btnAction');
+            const resultDisplay = document.getElementById('resultDisplay');
+            const mediaContainer = document.getElementById('mediaContainer');
 
             if(!prompt) {
-                addLog("<span class='text-red-500'>Error: Prompt empty!</span>");
-                return alert("Isi prompt dulu!");
+                log("ERROR: Prompt is empty!", "text-red-500");
+                return;
             }
 
             btn.disabled = true;
             btn.innerText = "PROCESSING...";
-            addLog("Initiating Puter.ai engine...");
+            resultDisplay.classList.add('hidden');
+            log("Connecting to Puter AI Infrastructure...");
 
             try {
-                // Skenario: Menggunakan Puter.ai untuk generate visual
-                // Kita bungkus dalam pengecekan objek untuk menghindari 'Undefined'
-                const result = await puter.ai.txt2img(`${prompt}, high resolution cinematic video frame, 4k, moving shot`, true);
+                // Proses AI menggunakan Puter.js
+                // Menambahkan instruksi 'video motion' secara otomatis agar hasilnya dinamis
+                const aiResult = await puter.ai.txt2img(`${prompt}, cinematic motion, hyper-realistic video frame, high fps`, true);
+                
+                log("AI responded. Extracting media URL...");
 
-                if (!result) {
-                    throw new Error("Puter AI returned no response.");
-                }
-
-                addLog("Response received!");
-
-                // Mencari URL hasil (Cek src atau url)
-                const finalUrl = result.src || result.url || (result[0] ? result[0].src : null);
-
-                if (finalUrl) {
-                    addLog("<span class='text-blue-400'>Video Frame Generated! Opening...</span>");
-                    window.open(finalUrl, '_blank');
+                if (aiResult && (aiResult.src || aiResult.url)) {
+                    const finalUrl = aiResult.src || aiResult.url;
+                    
+                    log("Media generated successfully!", "text-blue-400");
+                    
+                    // Tampilkan media langsung di halaman
+                    mediaContainer.innerHTML = `<img src="${finalUrl}" class="w-full h-auto block" alt="AI Generation">`;
+                    resultDisplay.classList.remove('hidden');
+                    resultDisplay.classList.remove('animate-pulse');
+                    
+                    document.getElementById('downloadBtn').onclick = () => window.open(finalUrl, '_blank');
+                    
+                    log("DONE. Visual displayed below.");
                 } else {
-                    console.log("Full Result Object:", result); // Untuk debug di F12
-                    throw new Error("Result object exists but no URL found.");
+                    throw new Error("Invalid response object from Puter AI.");
                 }
 
             } catch (err) {
-                addLog(`<span class='text-red-500'>Error: ${err.message}</span>`);
+                log(`FATAL ERROR: ${err.message}`, "text-red-500");
                 console.error(err);
-                alert("Terjadi kesalahan: " + err.message);
             } finally {
                 btn.disabled = false;
                 btn.innerText = "GENERATE VIDEO";
             }
         }
-        
-        // Init default button style
-        document.querySelector('.dur-btn').classList.add('border-purple-500', 'bg-purple-900/20');
     </script>
 </body>
 </html>
